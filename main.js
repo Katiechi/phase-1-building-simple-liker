@@ -4,6 +4,41 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
+heart = document.getElementsByClassName("like-glyph");
+for (var i = 0; i < heart.length; i++) {
+    heart[i].addEventListener("click", function (event) {
+  //Add function here
+const  heartEmoji = event.target
+console.log(heartEmoji)
+  mimicServerCall()
+   .then(function(){
+     if (heartEmoji.innerText === EMPTY_HEART){
+         heartEmoji.innerText = FULL_HEART
+         heartEmoji.className = 'activated-heart'
+    }
+  else{
+        heartEmoji.innerText = EMPTY_HEART
+        heartEmoji.className = 'like-glyph'
+  }
+  
+  })
+  .catch(function(error) {
+    const modal = document.getElementById("modal");
+    modal.className = "";
+    modal.innerText = error;
+    setTimeout(() =>  modal.className = "hidden", 3000);
+  });
+  
+    });
+}
+
+
+  
+
+
+
+
+
 
 
 
